@@ -1,4 +1,3 @@
-Paste:
 from config.settings import GOLDEN_ZONE
 
 def calculate_health(latest):
