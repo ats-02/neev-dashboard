@@ -18,5 +18,9 @@ def load_data():
         "cycle_time"
     ]
 
-    return df
+    df["cycle_time"] = (
+        pd.to_timedelta(df["cycle_time"])
+        .dt.total_seconds()
+    )
 
+    return df
