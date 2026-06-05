@@ -8,6 +8,15 @@ st.set_page_config(
 )
 
 # ---------------------------------------------------------
+# NATIVE ENTERPRISE SIDEBAR LOGO INJECTION
+# ---------------------------------------------------------
+# Uses Streamlit's official asset manager to render the emblem in the sidebar safely
+st.logo(
+    "https://githubusercontent.com",
+    link="https://unominda.com"
+)
+
+# ---------------------------------------------------------
 # UNO MINDA CORPORATE THEME STYLING (Premium CSS Architecture)
 # ---------------------------------------------------------
 st.markdown("""
@@ -18,10 +27,10 @@ st.markdown("""
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
     
-    /* Native Frame Title Box Wrapper */
+    /* Clean Solid Corporate Header Panel */
     .brand-title-box {
         background: linear-gradient(135deg, #0A2540 0%, #0056B3 100%);
-        padding: 1.8rem 2.2rem;
+        padding: 2rem 2.5rem;
         border-radius: 8px;
         color: white;
         margin-bottom: 2.5rem;
@@ -94,25 +103,14 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ---------------------------------------------------------
-# EXECUTIVE BANNER SPLIT USING NATIVE STREAMLIT LAYOUT
+# EXECUTIVE TITLE BANNER
 # ---------------------------------------------------------
-# Creating a horizontal split grid container frame
-text_layout, logo_layout = st.columns([0.82, 0.18], vertical_alignment="center")
-
-with text_layout:
-    st.markdown("""
-        <div class="brand-title-box">
-            <h1 class="brand-title">UNO MINDA DIGITAL FACTORY</h1>
-            <p class="brand-subtitle">Enterprise IoT Manufacturing Intelligence & Process Control Platform</p>
-        </div>
-    """, unsafe_allow_html=True)
-
-with logo_layout:
-    # Uses Streamlit's official graphic controller to guarantee browser bypass render
-    st.image(
-        "https://unominda.com",
-        use_container_width=True
-    )
+st.markdown("""
+    <div class="brand-title-box">
+        <h1 class="brand-title">UNO MINDA DIGITAL FACTORY</h1>
+        <p class="brand-subtitle">Enterprise IoT Manufacturing Intelligence & Process Control Platform</p>
+    </div>
+""", unsafe_allow_html=True)
 
 # ---------------------------------------------------------
 # PROJECT MISSION STATEMENT
