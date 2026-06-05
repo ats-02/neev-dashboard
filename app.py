@@ -7,7 +7,7 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("🏭 UNO MINDA DIGITAL FACTORY")
+st.title(" UNO MINDA DIGITAL FACTORY")
 
 st.markdown("""
 ### NEEV Project
