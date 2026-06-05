@@ -1,4 +1,6 @@
 import streamlit as st
+import base64
+import os
 
 # Global configuration - must be called FIRST and ONLY here
 st.set_page_config(
@@ -6,6 +8,19 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
+
+# ---------------------------------------------------------
+# LOCAL LOGO ENCODER PIPELINE
+# ---------------------------------------------------------
+def get_base64_image(image_path):
+    if os.path.exists(image_path):
+        with open(image_path, "rb") as img_file:
+            return f"data:image/png;base64,{base64.b64encode(img_file.read()).decode()}"
+    # Fallback placeholder if the image file is missing from data/ directory
+    return "https://placehold.co"
+
+# Fetch local image string safely
+logo_base64 = get_base64_image("data/logo.png")
 
 # ---------------------------------------------------------
 # UNO MINDA CORPORATE THEME STYLING (Premium CSS Architecture)
@@ -34,7 +49,7 @@ st.markdown("""
         flex-grow: 1;
     }
     .logo-pane img {
-        max-height: 65px;
+        max-height: 55px;
         background-color: rgba(255, 255, 255, 0.95);
         padding: 8px 14px;
         border-radius: 6px;
@@ -109,15 +124,14 @@ st.markdown("""
 # ---------------------------------------------------------
 # EXECUTIVE HEADER HERO BANNER WITH BRAND LOGO EMBED
 # ---------------------------------------------------------
-st.markdown("""
+st.markdown(f"""
     <div class="brand-container">
         <div class="text-pane">
             <h1 class="brand-title">UNO MINDA DIGITAL FACTORY</h1>
             <p class="brand-subtitle">Enterprise IoT Manufacturing Intelligence & Process Control Platform</p>
         </div>
         <div class="logo-pane">
-            <!-- Official Transparent Corporate Image Token Address CDN -->
-            <img src="https://img.logokit.com/unominda.com" alt="Uno Minda Logo">
+            <img src="{logo_base64}" alt="Uno Minda Logo">
         </div>
     </div>
 """, unsafe_allow_html=True)
