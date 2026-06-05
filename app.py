@@ -18,27 +18,14 @@ st.markdown("""
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
     
-    /* Executive Brand Header Header Box */
-    .brand-container {
+    /* Native Frame Title Box Wrapper */
+    .brand-title-box {
         background: linear-gradient(135deg, #0A2540 0%, #0056B3 100%);
-        padding: 2rem 2.5rem;
+        padding: 1.8rem 2.2rem;
         border-radius: 8px;
         color: white;
         margin-bottom: 2.5rem;
         box-shadow: 0 4px 12px rgba(10, 37, 64, 0.08);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    .text-pane {
-        flex-grow: 1;
-    }
-    .logo-pane img {
-        max-height: 55px;
-        background-color: #ffffff;
-        padding: 6px 12px;
-        border-radius: 6px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
     .brand-title {
         font-size: 2.2rem !important;
@@ -107,22 +94,25 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ---------------------------------------------------------
-# EXECUTIVE HEADER HERO BANNER WITH STABLE CDN LOGO EMBED
+# EXECUTIVE BANNER SPLIT USING NATIVE STREAMLIT LAYOUT
 # ---------------------------------------------------------
-# Pulling the verified official high-resolution branding image asset directly
-verified_logo_url = "https://unominda.com"
+# Creating a horizontal split grid container frame
+text_layout, logo_layout = st.columns([0.82, 0.18], vertical_alignment="center")
 
-st.markdown(f"""
-    <div class="brand-container">
-        <div class="text-pane">
+with text_layout:
+    st.markdown("""
+        <div class="brand-title-box">
             <h1 class="brand-title">UNO MINDA DIGITAL FACTORY</h1>
             <p class="brand-subtitle">Enterprise IoT Manufacturing Intelligence & Process Control Platform</p>
         </div>
-        <div class="logo-pane">
-            <img src="{verified_logo_url}" alt="Uno Minda Logo">
-        </div>
-    </div>
-""", unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
+
+with logo_layout:
+    # Uses Streamlit's official graphic controller to guarantee browser bypass render
+    st.image(
+        "https://unominda.com",
+        use_container_width=True
+    )
 
 # ---------------------------------------------------------
 # PROJECT MISSION STATEMENT
