@@ -18,7 +18,7 @@ st.markdown("""
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
     
-    /* Executive Brand Header */
+    /* Executive Brand Header Header Box */
     .brand-container {
         background: linear-gradient(135deg, #0A2540 0%, #0056B3 100%);
         padding: 2rem 2.5rem;
@@ -26,6 +26,19 @@ st.markdown("""
         color: white;
         margin-bottom: 2.5rem;
         box-shadow: 0 4px 12px rgba(10, 37, 64, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .text-pane {
+        flex-grow: 1;
+    }
+    .logo-pane img {
+        max-height: 65px;
+        background-color: rgba(255, 255, 255, 0.95);
+        padding: 8px 14px;
+        border-radius: 6px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
     .brand-title {
         font-size: 2.2rem !important;
@@ -34,6 +47,7 @@ st.markdown("""
         letter-spacing: 0.5px;
         margin: 0 !important;
         padding-bottom: 0.25rem;
+        color: #ffffff !important;
     }
     .brand-subtitle {
         font-size: 1.05rem !important;
@@ -41,6 +55,7 @@ st.markdown("""
         font-weight: 400;
         margin: 0 !important;
         letter-spacing: 0.5px;
+        color: #ffffff !important;
     }
     
     /* Section Indicators */
@@ -92,12 +107,18 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ---------------------------------------------------------
-# EXECUTIVE HEADER HERO BANNER
+# EXECUTIVE HEADER HERO BANNER WITH BRAND LOGO EMBED
 # ---------------------------------------------------------
 st.markdown("""
     <div class="brand-container">
-        <h1 class="brand-title">UNO MINDA DIGITAL FACTORY</h1>
-        <p class="brand-subtitle">Enterprise IoT Manufacturing Intelligence & Process Control Platform</p>
+        <div class="text-pane">
+            <h1 class="brand-title">UNO MINDA DIGITAL FACTORY</h1>
+            <p class="brand-subtitle">Enterprise IoT Manufacturing Intelligence & Process Control Platform</p>
+        </div>
+        <div class="logo-pane">
+            <!-- Official Transparent Corporate Image Token Address CDN -->
+            <img src="https://img.logokit.com/unominda.com" alt="Uno Minda Logo">
+        </div>
     </div>
 """, unsafe_allow_html=True)
 
