@@ -1,6 +1,4 @@
 import streamlit as st
-import base64
-import os
 
 # Global configuration - must be called FIRST and ONLY here
 st.set_page_config(
@@ -8,19 +6,6 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
-
-# ---------------------------------------------------------
-# LOCAL LOGO ENCODER PIPELINE
-# ---------------------------------------------------------
-def get_base64_image(image_path):
-    if os.path.exists(image_path):
-        with open(image_path, "rb") as img_file:
-            return f"data:image/png;base64,{base64.b64encode(img_file.read()).decode()}"
-    # Fallback placeholder if the image file is missing from data/ directory
-    return "https://placehold.co"
-
-# Fetch local image string safely
-logo_base64 = get_base64_image("data/logo.png")
 
 # ---------------------------------------------------------
 # UNO MINDA CORPORATE THEME STYLING (Premium CSS Architecture)
@@ -50,8 +35,8 @@ st.markdown("""
     }
     .logo-pane img {
         max-height: 55px;
-        background-color: rgba(255, 255, 255, 0.95);
-        padding: 8px 14px;
+        background-color: #ffffff;
+        padding: 6px 12px;
         border-radius: 6px;
         box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
@@ -122,8 +107,11 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ---------------------------------------------------------
-# EXECUTIVE HEADER HERO BANNER WITH BRAND LOGO EMBED
+# EXECUTIVE HEADER HERO BANNER WITH STABLE CDN LOGO EMBED
 # ---------------------------------------------------------
+# Pulling the verified official high-resolution branding image asset directly
+verified_logo_url = "https://unominda.com"
+
 st.markdown(f"""
     <div class="brand-container">
         <div class="text-pane">
@@ -131,7 +119,7 @@ st.markdown(f"""
             <p class="brand-subtitle">Enterprise IoT Manufacturing Intelligence & Process Control Platform</p>
         </div>
         <div class="logo-pane">
-            <img src="{logo_base64}" alt="Uno Minda Logo">
+            <img src="{verified_logo_url}" alt="Uno Minda Logo">
         </div>
     </div>
 """, unsafe_allow_html=True)
