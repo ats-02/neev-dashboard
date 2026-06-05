@@ -18,11 +18,16 @@ def load_data():
     rename_mapping = {df.columns[i]: target_columns[i] for i in range(min(len(df.columns), len(target_columns)))}
     df = df.rename(columns=rename_mapping)
 
-    # Perform safe data conversion types execution
+    # --- PERFECTED CYCLE TIME CONVERSION FOR "00:00:48" ---
     if "cycle_time" in df.columns:
-        if df["cycle_time"].dtype == 'object':
-            df["cycle_time"] = pd.to_timedelta(df["cycle_time"]).dt.total_seconds()
-        else:
-            df["cycle_time"] = pd.to_numeric(df["cycle_time"], errors='coerce')
+        # Clean up any accidental leading/trailing blank spaces in the text
+        df["cycle_time"] = df["cycle_time"].astype(str).str.strip()
+        
+        # Convert "00:00:48" into 48.0 seconds flat safely
+        df["cycle_time"] = pd.to_timedelta(df["cycle_time"], errors='coerce').dt.total_seconds()
+        
+        # If there are any missing rows, fallback to 0.0 so math equations don't fail
+        df["cycle_time"] = df["cycle_time"].fillna(0.0)
+    # -----------------------------------------------------
 
     return df
